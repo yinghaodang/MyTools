@@ -1,0 +1,17 @@
+# /usr/lib/systemd/system/sshd.service
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=OpenSSH Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/sbin/sshd -D
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
